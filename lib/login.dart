@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practica_1/widgets/input_text.dart';
+import 'package:practica_1/widgets/login_button.dart';
 
 /************************************* */
 Color fromHex(String hexString) {
@@ -57,35 +58,25 @@ class _Loginpage extends State<Login> {
                                 ],
                               ),
                             ),
-                            
                             SizedBox(
                               height: 50,
                             ),
                             Column(
                               children: <Widget>[
-                                CupertinoButton(
+                                Button(
+                                  label: 'Inicir Session',
                                   color: Colors.pinkAccent,
-                                  onPressed: () {},
-                                  child: Text('Iniciar Session',style: TextStyle(fontSize: 20,),),
                                 ),
-                                CupertinoButton(
-                                  onPressed: () {},
-                                  color: Colors.white12,
-                                  child:RaisedButton.icon(
-                                    onPressed: (){},
-                                    icon: Icon(Icons.account_circle,size: 30,),
-                                    label: Text('Google'),
-                                  )
+                                Button(
+                                  icon: Icons.account_circle,
+                                  label: 'Google',
+                                  color: Colors.white,
                                 ),
-                                 CupertinoButton(
-                                  onPressed: () {},
+                                Button(
+                                  icon: Icons.account_circle,
+                                  label: 'Facebook',
                                   color: fromHex('#4267b2'),
-                                  child:RaisedButton.icon(
-                                    onPressed: (){},
-                                    icon: Icon(Icons.account_circle,size: 30,),
-                                    label: Text('Facebook'),
-                                  )
-                                ) 
+                                )
                               ],
                             )
                           ],
