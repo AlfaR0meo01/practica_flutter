@@ -8,10 +8,10 @@ class Input extends StatefulWidget {
   const Input({Key key, @required this.label}) : super(key: key);
 
   @override
-  _Input_text_state createState() => _Input_text_state();
+  Input_Text_State createState() => Input_Text_State();
 }
 
-class _Input_text_state extends State<Input> {
+class Input_Text_State extends State<Input> {
 
 
   @override

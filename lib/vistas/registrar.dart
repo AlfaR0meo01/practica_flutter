@@ -1,10 +1,9 @@
-//import 'package:flutter/cupertino.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practica_1/widgets/input_text.dart';
 import 'package:practica_1/widgets/login_button.dart';
 
-/************************************* */
+//////////////////////////////////////////////
 Color fromHex(String hexString) {
   final buffer = StringBuffer();
   if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
@@ -12,7 +11,7 @@ Color fromHex(String hexString) {
   return Color(int.parse(buffer.toString(), radix: 16));
 }
 
-/************************************** */
+//////////////////////////////////////////////
 class Registrar extends StatefulWidget {
   Registrar({Key key}) : super(key: key);
 
@@ -46,7 +45,7 @@ class _Loginpage extends State<Registrar> {
                             Container(
                               height: 60,
                               margin: EdgeInsets.only(bottom: 50.0),
-                              padding: EdgeInsets.only(left: 20.0),
+                              padding: EdgeInsets.only(left: 50.0),
                               color: fromHex('#1fcd6c'),
                               child: Row(
                                 children: <Widget>[
@@ -102,14 +101,12 @@ class _Loginpage extends State<Registrar> {
                   )),
             ),
             Positioned(
-                left: 10,
-                top: 75,
-                child: FloatingActionButton(
-                  backgroundColor: fromHex('#3DA35D'),
+                top: 29,
+                child: CupertinoButton(
                   onPressed: () => Navigator.pushNamed(context, "login"),
                   child: Icon(
                     Icons.arrow_back,
-                    color: fromHex('#b3b3b3'),
+                    color: Colors.white,
                     size: 30,
                   ),
                 ))

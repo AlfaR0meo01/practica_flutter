@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:http/http.dart';
+import 'dart:convert';
+import 'dart:async';
+//import 'package:flutter/rendering.dart';
 import 'vistas/login.dart';
 import 'vistas/registrar.dart';
 
@@ -10,17 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //debugPaintSizeEnabled = true;
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      //home: Test(title: 'Flutter Demo Home Page'),
       home: Login(),
       routes: {
         "login":(context)=>Login(),
         "Registrar":(context)=>Registrar(),
       },
-      //home: Cube(),
     );
   }
 }

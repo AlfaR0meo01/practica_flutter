@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:practica_1/widgets/input_text.dart';
 import 'package:practica_1/widgets/login_button.dart';
 
-/************************************* */
+///////////////////////////////////////////
 Color fromHex(String hexString) {
   final buffer = StringBuffer();
   if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
@@ -11,7 +12,7 @@ Color fromHex(String hexString) {
   return Color(int.parse(buffer.toString(), radix: 16));
 }
 
-/************************************** */
+/////////////////////////////////////////////
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
 
@@ -75,12 +76,12 @@ class _Loginpage extends State<Login> {
                                   color: fromHex('#1fcd6c'),
                                 ),
                                 Button(
-                                  icon: Icons.account_circle,
+                                  icon: FontAwesomeIcons.google,
                                   label: 'Google',
                                   color: Colors.white,
                                 ),
                                 Button(
-                                  icon: Icons.account_circle,
+                                  icon: FontAwesomeIcons.facebookF,
                                   label: 'Facebook',
                                   color: fromHex('#4267b2'),
                                 ),
