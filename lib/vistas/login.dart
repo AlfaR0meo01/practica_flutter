@@ -26,7 +26,7 @@ class _Loginpage extends State<Login> {
     //Orientation currentOrientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: fromHex('#2e3740'),
       body: Container(
         width: size.width,
         height: size.height,
@@ -42,30 +42,37 @@ class _Loginpage extends State<Login> {
                       children: <Widget>[
                         Column(
                           children: <Widget>[
-                            ConstrainedBox(
-                              constraints: BoxConstraints(
-                                maxHeight: 350,
-                                maxWidth: 350,
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  Input(
-                                    label: 'Correo',
-                                  ),
-                                  Input(
-                                    label: 'Constraseña',
-                                  )
-                                ],
-                              ),
+                            Container(
+                              margin: EdgeInsets.only(top: 100),
                             ),
-                            SizedBox(
-                              height: 50,
+                            Icon(
+                              Icons.account_circle,
+                              color: fromHex('#b3b3b3'),
+                              size: 90,
+                            ),
+                            Container(
+                              child: ConstrainedBox(
+                                constraints: BoxConstraints(
+                                  maxHeight: 150,
+                                  maxWidth: 350,
+                                ),
+                                child: Column(
+                                  children: <Widget>[
+                                    Input(
+                                      label: 'Correo',
+                                    ),
+                                    Input(
+                                      label: 'Constraseña',
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                             Column(
                               children: <Widget>[
                                 Button(
-                                  label: 'Inicir Session',
-                                  color: Colors.pinkAccent,
+                                  label: 'Iniciar Sesion',
+                                  color: fromHex('#1fcd6c'),
                                 ),
                                 Button(
                                   icon: Icons.account_circle,
@@ -76,6 +83,25 @@ class _Loginpage extends State<Login> {
                                   icon: Icons.account_circle,
                                   label: 'Facebook',
                                   color: fromHex('#4267b2'),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      'Todavia no tienes cuenta',
+                                      style: TextStyle(
+                                          fontSize: 16, color: Colors.white),
+                                    ),
+                                    CupertinoButton(
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, "Registrar"),
+                                      child: Text(
+                                        'Registrate',
+                                        style: TextStyle(
+                                            color: fromHex('#1fcd6c')),
+                                      ),
+                                    )
+                                  ],
                                 )
                               ],
                             )

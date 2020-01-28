@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
@@ -16,11 +16,11 @@ class Button extends StatelessWidget {
       height: 50,
       margin: const EdgeInsets.only(top: 10.0),
        child: RaisedButton.icon(
-         onPressed: (){},
+         onPressed: (){}, 
          icon: Icon(this.icon, size: 30,),
-         label:Text(this.label),  
+         label:Text(this.label),
          color: this.color,
-       )
-    );
+        )
+      );
+    }
   }
-}
