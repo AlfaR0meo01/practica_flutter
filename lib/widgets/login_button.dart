@@ -6,8 +6,9 @@ class Button extends StatelessWidget {
   final String label;
   final Color color;
   final IconData icon;
+  final String route;
   
-  const Button({Key key, @required this.label, @required this.color, this.icon}) : super(key: key);
+  const Button({Key key, @required this.label, @required this.color, this.icon, this.route}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class Button extends StatelessWidget {
       height: 50,
       margin: const EdgeInsets.only(top: 10.0),
        child: RaisedButton.icon(
-         onPressed: (){}, 
+         onPressed: ()=> Navigator.pushNamed(context, this.route), 
          icon: Icon(this.icon, size: 30,),
          label:Text(this.label),
          color: this.color,

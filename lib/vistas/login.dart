@@ -74,6 +74,7 @@ class _Loginpage extends State<Login> {
                                 Button(
                                   label: 'Iniciar Sesion',
                                   color: fromHex('#1fcd6c'),
+                                  route: 'vista_principal',
                                 ),
                                 Button(
                                   icon: FontAwesomeIcons.google,
