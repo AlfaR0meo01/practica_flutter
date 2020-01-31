@@ -119,3 +119,6 @@ class _Loginpage extends State<Registrar> {
     );
   }
 }
+/*var dat = await http.post('https://sistemas.cruzperez.com/calificaciones/flutter/get_data.php',body: {
+      'dat1':12
+    }); */
