@@ -20,6 +20,9 @@ class Registrar extends StatefulWidget {
 }
 
 class _Loginpage extends State<Registrar> {
+
+
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practica_1/vistas/login.dart';
 
 class Input extends StatefulWidget {
-  //Input({Key key}) : super(key: key);
+  
   final String label;
 
   const Input({Key key, @required this.label}) : super(key: key);
@@ -12,7 +12,6 @@ class Input extends StatefulWidget {
 }
 
 class Input_Text_State extends State<Input> {
-
 
   @override
   Widget build(BuildContext context) {
