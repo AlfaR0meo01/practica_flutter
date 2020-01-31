@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-/*import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:async';*/
-//import 'package:flutter/rendering.dart';
 import 'vistas/login.dart';
 import 'vistas/registrar.dart';
 import 'vistas/main_vista.dart';
@@ -18,7 +14,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "login":(context)=>Login(),
         "Registrar":(context)=>Registrar(),
-        "vista_principal":(context)=>Vista(),
+        "vista_principal":(context)=>ListViewDatos(),
       },
     );
   }
