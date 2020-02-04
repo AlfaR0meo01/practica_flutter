@@ -4,20 +4,22 @@ import 'package:practica_1/vistas/login.dart';
 class Input extends StatefulWidget {
   
   final String label;
+  final TextEditingController control;
+  //final String control;
 
-  const Input({Key key, @required this.label}) : super(key: key);
+  const Input({Key key, @required this.label, this.control}) : super(key: key);
 
   @override
   Input_Text_State createState() => Input_Text_State();
 }
 
 class Input_Text_State extends State<Input> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 300,
       child:TextFormField(
+        controller: this.control,
         style: new TextStyle(color: fromHex('#b3b3b3')),  
         decoration: InputDecoration(
           labelText: widget.label,

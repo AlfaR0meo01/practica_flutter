@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'vistas/login.dart';
 import 'vistas/registrar.dart';
 import 'vistas/main_vista.dart';
-import 'vistas/send_data.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
       home: Login(),
       routes: {
         "login":(context)=>Login(),
-        "Registrar":(context)=>Registrar(),
+        "Registrar":(context)=>RegistrarUser(),
         "vista_principal":(context)=>ListViewDatos(),
       },
     );

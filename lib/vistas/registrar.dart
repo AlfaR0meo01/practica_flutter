@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practica_1/widgets/input_text.dart';
@@ -12,7 +14,100 @@ Color fromHex(String hexString) {
 }
 
 //////////////////////////////////////////////
-class Registrar extends StatefulWidget {
+
+class RegistrarUser extends StatefulWidget {
+  RegistrarUser({Key key}) : super(key: key);
+
+  @override
+  _RegistrarUserState createState() => _RegistrarUserState();
+}
+
+class _RegistrarUserState extends State<RegistrarUser> {
+  bool visible = false;
+
+  final nombrecontrolador = TextEditingController();
+  final apellidocontrolador = TextEditingController();
+  final telefonocontrolador = TextEditingController();
+  final emailcontrolador = TextEditingController();
+  final pswcontrolador = TextEditingController();
+
+  Future userRegistro() async {
+    setState(() {
+      visible = true;
+    });
+
+    String nombre = nombrecontrolador.text;
+    String apellido = apellidocontrolador.text;
+    String telefono = telefonocontrolador.text;
+    String email = emailcontrolador.text;
+    String psw = pswcontrolador.text;
+
+    var url =
+        'https://sistemas.cruzperez.com/calificaciones/flutter/insert_data.php';
+
+    var data = {
+      'nombre': nombre,
+      'apellido': apellido,
+      'telefono': telefono,
+      'email': email,
+      'psw': psw
+    };
+
+    var response = await http.post(url, body: json.encode(data));
+
+    var msg = jsonDecode(response.body);
+
+    if (response.statusCode == 200) {
+      setState(() {
+        visible = false;
+      });
+    }
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text(msg),
+          actions: <Widget>[
+            FlatButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: new Text('Ok'),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+      backgroundColor: fromHex('#2e3740'),
+      body: Container(
+        width: size.width,
+        height: size.height,
+        child: Center(
+            child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+            ),
+            Input(
+              _controller
+              label: 'nombre'
+              )
+
+          ],
+        )),
+      ),
+    );
+  }
+}
+
+/*class Registrar extends StatefulWidget {
   Registrar({Key key}) : super(key: key);
 
   @override
@@ -119,6 +214,6 @@ class _Loginpage extends State<Registrar> {
     );
   }
 }
-/*var dat = await http.post('https://sistemas.cruzperez.com/calificaciones/flutter/get_data.php',body: {
+var dat = await http.post('https://sistemas.cruzperez.com/calificaciones/flutter/get_data.php',body: {
       'dat1':12
     }); */
