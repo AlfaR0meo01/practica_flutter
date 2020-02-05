@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:practica_1/widgets/input_text.dart';
-import 'package:practica_1/widgets/login_button.dart';
 
 //////////////////////////////////////////////
 Color fromHex(String hexString) {
@@ -32,9 +31,6 @@ class _RegistrarUserState extends State<RegistrarUser> {
   final pswcontrolador = TextEditingController();
 
   Future userRegistro() async {
-    setState(() {
-      visible = true;
-    });
 
     String nombre = nombrecontrolador.text;
     String apellido = apellidocontrolador.text;
@@ -53,15 +49,12 @@ class _RegistrarUserState extends State<RegistrarUser> {
       'psw': psw
     };
 
+    print(data);
+
     var response = await http.post(url, body: json.encode(data));
+    
 
     var msg = jsonDecode(response.body);
-
-    if (response.statusCode == 200) {
-      setState(() {
-        visible = false;
-      });
-    }
 
     showDialog(
       context: context,
@@ -89,131 +82,66 @@ class _RegistrarUserState extends State<RegistrarUser> {
       body: Container(
         width: size.width,
         height: size.height,
-        child: Center(
-            child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-            ),
-            Input(
-              _controller
-              label: 'nombre'
-              )
-
-          ],
-        )),
-      ),
-    );
-  }
-}
-
-/*class Registrar extends StatefulWidget {
-  Registrar({Key key}) : super(key: key);
-
-  @override
-  _Loginpage createState() => _Loginpage();
-}
-
-class _Loginpage extends State<Registrar> {
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    //Orientation currentOrientation = MediaQuery.of(context).orientation;
-
-    return Scaffold(
-      backgroundColor: fromHex('#2e3740'),
-      body: Container(
-        width: size.width,
-        height: size.height,
         child: Stack(
           children: <Widget>[
             SingleChildScrollView(
               child: Container(
-                  width: size.width,
-                  height: size.height,
-                  child: SafeArea(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            Container(
-                              height: 60,
-                              margin: EdgeInsets.only(bottom: 50.0),
-                              padding: EdgeInsets.only(left: 50.0),
-                              color: fromHex('#1fcd6c'),
-                              child: Row(
-                                children: <Widget>[
-                                  Text('Registro',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 30)),
-                                ],
-                              ),
-                            ),
-                            ConstrainedBox(
-                              constraints: BoxConstraints(
-                                maxHeight: 380,
-                                maxWidth: 350,
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  Input(
-                                    label: 'Nombre',
-                                  ),
-                                  Input(
-                                    label: 'Apellidos',
-                                  ),
-                                  Input(
-                                    label: 'Telefono',
-                                  ),
-                                  Input(
-                                    label: 'Correo',
-                                  ),
-                                  Input(
-                                    label: 'Constraseña',
-                                  ),
-                                  Input(
-                                    label: 'Constraseña',
-                                  )
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            Column(
+                width: size.width,
+                height: size.height,
+                child: SafeArea(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            height: 60,
+                            margin: EdgeInsets.only(bottom: 50.0),
+                            padding: EdgeInsets.only(left: 50.0),
+                            color: fromHex('#1fcd6c'),
+                            child: Row(
                               children: <Widget>[
-                                Button(
-                                  label: 'Registrar',
-                                  color: fromHex('#1fcd6c'),
-                                ),
+                                Text('Registro',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 30)),
                               ],
+                            ),
+                          ),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(
+                            maxHeight: 350,
+                            maxWidth: 350,
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                Input(label: 'Nombre', control: nombrecontrolador),
+                                Input(label: 'Apellidos', control: apellidocontrolador),
+                                Input(label: 'Telefono', control: telefonocontrolador),
+                                Input(label: 'Correo', control: emailcontrolador),
+                                Input(label: 'Contrasena', control: pswcontrolador)
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 50,
+                            width: 250,
+                            child: new RaisedButton(
+                              onPressed: userRegistro,
+                              color: fromHex('#1fcd6c'),
+                              child: Text('Registrar' ,style: TextStyle(fontSize: 20),),
                             )
-                          ],
-                        ),
-                      ],
-                    ),
-                  )),
-            ),
-            Positioned(
-                top: 29,
-                child: CupertinoButton(
-                  onPressed: () => Navigator.pushNamed(context, "login"),
-                  child: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
-                    size: 30,
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                ))
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 }
-var dat = await http.post('https://sistemas.cruzperez.com/calificaciones/flutter/get_data.php',body: {
-      'dat1':12
-    }); */
+

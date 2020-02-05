@@ -19,7 +19,7 @@ class Input_Text_State extends State<Input> {
     return Container(
       width: 300,
       child:TextFormField(
-        controller: this.control,
+        controller: widget.control,
         style: new TextStyle(color: fromHex('#b3b3b3')),  
         decoration: InputDecoration(
           labelText: widget.label,
