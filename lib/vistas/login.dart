@@ -27,7 +27,7 @@ class _Loginpage extends State<Login> {
     //Orientation currentOrientation = MediaQuery.of(context).orientation;
 
     return Scaffold(
-      backgroundColor: fromHex('#2e3740'),
+      //backgroundColor: fromHex('#2e3740'),
       body: Container(
         width: size.width,
         height: size.height,
@@ -37,7 +37,7 @@ class _Loginpage extends State<Login> {
               child: Container(
                   width: size.width,
                   height: size.height,
-                  child: SafeArea(
+                  //child: SafeArea(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -73,7 +73,7 @@ class _Loginpage extends State<Login> {
                               children: <Widget>[
                                 Button(
                                   label: 'Iniciar Sesion',
-                                  color: fromHex('#1fcd6c'),
+                                  color: fromHex('#1389fd'),
                                   route: 'vista_principal',
                                 ),
                                 Button(
@@ -92,7 +92,7 @@ class _Loginpage extends State<Login> {
                                     Text(
                                       'Todavia no tienes cuenta',
                                       style: TextStyle(
-                                          fontSize: 16, color: Colors.white),
+                                          fontSize: 16, color: Colors.black),
                                     ),
                                     CupertinoButton(
                                       onPressed: () => Navigator.pushNamed(
@@ -100,7 +100,7 @@ class _Loginpage extends State<Login> {
                                       child: Text(
                                         'Registrate',
                                         style: TextStyle(
-                                            color: fromHex('#1fcd6c')),
+                                            color: fromHex('#1389fd')),
                                       ),
                                     )
                                   ],
@@ -111,7 +111,8 @@ class _Loginpage extends State<Login> {
                         )
                       ],
                     ),
-                  )),
+                  //)
+                  ),
             )
           ],
         ),

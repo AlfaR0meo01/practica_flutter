@@ -31,14 +31,13 @@ class _RegistrarUserState extends State<RegistrarUser> {
   final pswcontrolador = TextEditingController();
 
   Future userRegistro() async {
-
     String nombre = nombrecontrolador.text;
     String apellido = apellidocontrolador.text;
     String telefono = telefonocontrolador.text;
     String email = emailcontrolador.text;
     String psw = pswcontrolador.text;
 
-    var url =
+    String url =
         'https://sistemas.cruzperez.com/calificaciones/flutter/insert_data.php';
 
     var data = {
@@ -49,10 +48,8 @@ class _RegistrarUserState extends State<RegistrarUser> {
       'psw': psw
     };
 
-    print(data);
-
-    var response = await http.post(url, body: json.encode(data));
-    
+    var response = await http.post(Uri.encodeFull(url),
+        body: json.encode(data), headers: {'Accept': 'application/json'});
 
     var msg = jsonDecode(response.body);
 
@@ -78,7 +75,9 @@ class _RegistrarUserState extends State<RegistrarUser> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: fromHex('#2e3740'),
+      appBar: AppBar(
+        title: const Text('Registro',style: TextStyle(fontSize: 25),),
+      ),
       body: Container(
         width: size.width,
         height: size.height,
@@ -88,60 +87,53 @@ class _RegistrarUserState extends State<RegistrarUser> {
               child: Container(
                 width: size.width,
                 height: size.height,
-                child: SafeArea(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Container(
-                            height: 60,
-                            margin: EdgeInsets.only(bottom: 50.0),
-                            padding: EdgeInsets.only(left: 50.0),
-                            color: fromHex('#1fcd6c'),
-                            child: Row(
-                              children: <Widget>[
-                                Text('Registro',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 30)),
-                              ],
-                            ),
-                          ),
-                          ConstrainedBox(
-                            constraints: BoxConstraints(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        ConstrainedBox(
+                          constraints: BoxConstraints(
                             maxHeight: 350,
                             maxWidth: 350,
-                            ),
-                            child: Column(
-                              children: <Widget>[
-                                Input(label: 'Nombre', control: nombrecontrolador),
-                                Input(label: 'Apellidos', control: apellidocontrolador),
-                                Input(label: 'Telefono', control: telefonocontrolador),
-                                Input(label: 'Correo', control: emailcontrolador),
-                                Input(label: 'Contrasena', control: pswcontrolador)
-                              ],
-                            ),
                           ),
-                          SizedBox(
+                          child: Column(
+                            children: <Widget>[
+                              Input(
+                                  label: 'Nombre', control: nombrecontrolador),
+                              Input(
+                                  label: 'Apellidos',
+                                  control: apellidocontrolador),
+                              Input(
+                                  label: 'Telefono',
+                                  control: telefonocontrolador),
+                              Input(label: 'Correo', control: emailcontrolador),
+                              Input(
+                                  label: 'Contrasena', control: pswcontrolador)
+                            ],
+                          ),
+                        ),
+                        SizedBox(
                             height: 50,
                             width: 250,
                             child: new RaisedButton(
                               onPressed: userRegistro,
-                              color: fromHex('#1fcd6c'),
-                              child: Text('Registrar' ,style: TextStyle(fontSize: 20),),
-                            )
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+                              color: fromHex('#1389fd'),
+                              child: Text(
+                                'Registrar',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            )),
+                      ],
+                    )
+                  ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
     );
   }
 }
-

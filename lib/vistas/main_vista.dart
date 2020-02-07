@@ -16,43 +16,55 @@ class ListViewDatos extends StatefulWidget {
 }
 
 class _ListViewDatosState extends State<ListViewDatos> {
-  List dataUsers = [];
-
-
-  void readData() async {
+  Future<List<Users>> readData() async {
     var data = await http.get(
         'https://sistemas.cruzperez.com/calificaciones/flutter/get_data.php');
-    List<dynamic> jsonDecoded = await jsonDecode(data.body);
-    var internalDataUsers = [];
-    jsonDecoded.forEach((dat) => internalDataUsers.add(Users.fromJson(dat)));
-    setState(() {
-      dataUsers = internalDataUsers;
-    });
+
+    var jsonData = jsonDecode(data.body);
+
+    List<Users> users = [];
+
+    for (var u in jsonData) {
+      Users user = Users(u['id_usuario'], u['nombre'], u['apellidos'],
+          u['telefon'], u['email'], u['psw']);
+      users.add(user);
+    }
+    return users;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (dataUsers.isEmpty) readData();
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: Stack(
-        children: <Widget>[
-          dataUsers.isEmpty
-              ? Text('cargando')
-              : ListView(
-                  children: dataUsers
-                      .map((user) => Text(user.nombre))
-                      .toList(),
-                ),
-          Positioned(
-            bottom: 0,
-            child: FlatButton(
-              child: Text('Reload'),
-              onPressed: () => readData(),
-            ),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Usuarios'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh),
+            onPressed: () => readData(),
+          )
         ],
+      ),
+      body: Container(
+        child: FutureBuilder(
+            future: readData(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.data == null) {
+                return Container(
+                  child: Center(
+                    child: Text('cargando'),
+                  ),
+                );
+              } else {
+                return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                          leading: Icon(Icons.account_circle),
+                          title: Text(snapshot.data[index].nombre),
+                          subtitle: Text(snapshot.data[index].email));
+                    });
+              }
+            }),
       ),
     );
   }
@@ -65,16 +77,6 @@ class Users {
   final telefono;
   final email;
   final psw;
-
-  factory Users.fromJson(Map<String, dynamic> parsedJson) {
-    return Users(
-        parsedJson['id_usuario'],
-        parsedJson['nombre'],
-        parsedJson['apellidos'],
-        parsedJson['telefono'],
-        parsedJson['email'],
-        parsedJson['psw']);
-  }
 
   Users(this.idUsuario, this.nombre, this.apellidos, this.telefono, this.email,
       this.psw);
