@@ -22,7 +22,7 @@ class RegistrarUser extends StatefulWidget {
 }
 
 class _RegistrarUserState extends State<RegistrarUser> {
-  bool visible = false;
+ 
 
   final nombrecontrolador = TextEditingController();
   final apellidocontrolador = TextEditingController();
